@@ -8,15 +8,15 @@ resource "google_compute_network" "vpc_network" {
 resource "google_compute_subnetwork" "default" {
   name          = "my-custom-subnet"
   ip_cidr_range = "10.0.1.0/24"
-  region        = "us-west1"
+  region        = var.region
   network       = google_compute_network.vpc_network.id
 }
 
 # Create a single Compute Engine instance
 resource "google_compute_instance" "default" {
   name         = "flask-vm"
-  machine_type = "f1-micro"
-  zone         = "us-west1-a"
+  machine_type = "n1-standard-1"
+  zone         = var.zone
   tags         = ["ssh"]
 
   boot_disk {
