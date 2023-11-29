@@ -18,7 +18,7 @@ locals {
 # Create a single Compute Engine instance
 resource "google_compute_instance" "default" {
   name         = "flask-vm"
-  machine_type = "n1-standard-1"
+  machine_type = "n2-standard-8"
   zone         = var.zone
   tags         = ["ssh"]
 
