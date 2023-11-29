@@ -88,6 +88,17 @@ resource "google_compute_firewall" "flask" {
   source_ranges = ["0.0.0.0/0"]
 }
 
+resource "google_compute_firewall" "kubernetes" {
+  name    = "k8s-app-firewall"
+  network = google_compute_network.vpc_network.id
+
+  allow {
+    protocol = "tcp"
+    ports    = ["6443"]
+  }
+  source_ranges = ["0.0.0.0/0"]
+}
+
 output "Web-server-CKS1-URL" {
   value = join("", ["http://", google_compute_instance.cks1.network_interface.0.access_config.0.nat_ip, ":8080"])
 }
