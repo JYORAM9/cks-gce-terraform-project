@@ -94,9 +94,34 @@ resource "google_compute_firewall" "kubernetes" {
 
   allow {
     protocol = "tcp"
-    ports    = ["6443"]
+    ports    = ["6443", "443", "2379"]
   }
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["10.0.0.0/0"]
+}
+
+resource "google_compute_firewall" "calico" {
+  name    = "calico-app-firewall"
+  network = google_compute_network.vpc_network.id
+
+  allow {
+    protocol = "tcp"
+    ports    = ["179", "5473"]
+  }
+  source_ranges = ["10.0.0.0/0"]
+}
+
+resource "google_compute_firewall" "calico" {
+  name    = "calico-app-firewall"
+  network = google_compute_network.vpc_network.id
+  allow {
+    protocol = "udp"
+    ports    = ["4789"]
+  }
+  allow {
+    protocol = "tcp"
+    ports    = ["179", "5473"]
+  }
+  source_ranges = ["10.0.0.0/0"]
 }
 
 output "Web-server-CKS1-URL" {
