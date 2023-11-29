@@ -12,6 +12,9 @@ resource "google_compute_subnetwork" "default" {
   network       = google_compute_network.vpc_network.id
 }
 
+locals {
+  script = file("${path.module}/startup-script.sh")
+}
 # Create a single Compute Engine instance
 resource "google_compute_instance" "default" {
   name         = "flask-vm"
@@ -26,7 +29,7 @@ resource "google_compute_instance" "default" {
   }
 
   # Install Flask
-  metadata_startup_script = file("../startup-script.sh")
+  metadata_startup_script = local.script
 
   network_interface {
     subnetwork = google_compute_subnetwork.default.id
