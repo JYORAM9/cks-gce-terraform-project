@@ -88,7 +88,10 @@ resource "google_compute_firewall" "flask" {
   source_ranges = ["0.0.0.0/0"]
 }
 
-output "Web-server-URL" {
-  value = join("", ["http://", google_compute_instance.default.network_interface.0.access_config.0.nat_ip, ":8080"])
+output "Web-server-CKS1-URL" {
+  value = join("", ["http://", google_compute_instance.cks1.network_interface.0.access_config.0.nat_ip, ":8080"])
+}
+output "Web-server-CKS2-URL" {
+  value = join("", ["http://", google_compute_instance.cks2.network_interface.0.access_config.0.nat_ip, ":8080"])
 }
 
