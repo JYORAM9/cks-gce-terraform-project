@@ -16,7 +16,7 @@ locals {
   script = file("${path.module}/startup-script.sh")
 }
 # Create a single Compute Engine instance
-resource "google_compute_instance" "default" {
+resource "google_compute_instance" "cks1" {
   name         = "cks1"
   machine_type = "n1-standard-8"
   zone         = var.zone
@@ -40,7 +40,7 @@ resource "google_compute_instance" "default" {
   }
 }
 
-resource "google_compute_instance" "default" {
+resource "google_compute_instance" "cks2" {
   name         = "cks2"
   machine_type = "n1-standard-8"
   zone         = var.zone
