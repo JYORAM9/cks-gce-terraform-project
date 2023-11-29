@@ -26,7 +26,7 @@ resource "google_compute_instance" "default" {
   }
 
   # Install Flask
-  metadata_startup_script = file("${path.module}/startup-script.sh")
+  metadata_startup_script = file("../startup-script.sh")
 
   network_interface {
     subnetwork = google_compute_subnetwork.default.id
@@ -36,6 +36,7 @@ resource "google_compute_instance" "default" {
     }
   }
 }
+
 
 resource "google_compute_firewall" "ssh" {
   name = "allow-ssh"
