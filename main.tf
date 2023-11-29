@@ -16,15 +16,15 @@ locals {
   script = file("${path.module}/startup-script.sh")
 }
 # Create a single Compute Engine instance
-resource "google_compute_instance" "cks1" {
-  name         = "cks1"
+resource "google_compute_instance" "cks10" {
+  name         = "cks10"
   machine_type = "n1-standard-8"
   zone         = var.zone
   tags         = ["ssh"]
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-10"
+      image = "debian-cloud/debian-12"
     }
   }
 
@@ -40,15 +40,15 @@ resource "google_compute_instance" "cks1" {
   }
 }
 
-resource "google_compute_instance" "cks2" {
-  name         = "cks2"
+resource "google_compute_instance" "cks20" {
+  name         = "cks20"
   machine_type = "n1-standard-8"
   zone         = var.zone
   tags         = ["ssh"]
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-10"
+      image = "debian-cloud/debian-12"
     }
   }
 
