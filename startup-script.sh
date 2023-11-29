@@ -1,5 +1,6 @@
 # Install or update needed software
 apt-get update
+
 apt-get install -yq git supervisor python3 python3-pip python3-distutils
 pip install --upgrade pip virtualenv
 
