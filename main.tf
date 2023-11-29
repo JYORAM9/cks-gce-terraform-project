@@ -17,7 +17,7 @@ locals {
 }
 # Create a single Compute Engine instance
 resource "google_compute_instance" "default" {
-  name         = "flask-vm"
+  name         = "cks1"
   machine_type = "n1-standard-8"
   zone         = var.zone
   tags         = ["ssh"]
@@ -40,6 +40,29 @@ resource "google_compute_instance" "default" {
   }
 }
 
+resource "google_compute_instance" "default" {
+  name         = "cks2"
+  machine_type = "n1-standard-8"
+  zone         = var.zone
+  tags         = ["ssh"]
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-10"
+    }
+  }
+
+  # Install Flask
+  metadata_startup_script = local.script
+
+  network_interface {
+    subnetwork = google_compute_subnetwork.default.id
+
+    access_config {
+      # Include this section to give the VM an external IP address
+    }
+  }
+}
 
 resource "google_compute_firewall" "ssh" {
   name = "allow-ssh"
