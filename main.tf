@@ -102,17 +102,6 @@ resource "google_compute_firewall" "kubernetes" {
 resource "google_compute_firewall" "calico" {
   name    = "calico-app-firewall"
   network = google_compute_network.vpc_network.id
-
-  allow {
-    protocol = "tcp"
-    ports    = ["179", "5473"]
-  }
-  source_ranges = ["10.0.0.0/0"]
-}
-
-resource "google_compute_firewall" "calico" {
-  name    = "calico-app-firewall"
-  network = google_compute_network.vpc_network.id
   allow {
     protocol = "udp"
     ports    = ["4789"]
