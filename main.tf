@@ -96,7 +96,7 @@ resource "google_compute_firewall" "kubernetes" {
     protocol = "tcp"
     ports    = ["6443", "443", "2379"]
   }
-  source_ranges = ["10.0.0.0/0"]
+  source_ranges = ["10.0.1.0/24"]
 }
 
 resource "google_compute_firewall" "calico" {
@@ -110,7 +110,7 @@ resource "google_compute_firewall" "calico" {
     protocol = "tcp"
     ports    = ["179", "5473"]
   }
-  source_ranges = ["10.0.0.0/0"]
+  source_ranges = ["10.0.1.0/24"]
 }
 
 output "Web-server-CKS1-URL" {
