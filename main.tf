@@ -94,7 +94,7 @@ resource "google_compute_firewall" "kubernetes" {
 
   allow {
     protocol = "tcp"
-    ports    = ["6443", "443", "2379"]
+    ports    = ["6443", "443", "2379", "10250"]
   }
   source_ranges = ["10.0.1.0/24"]
 }
